@@ -1,4 +1,4 @@
-# randomize(min = 0, max = 1, fixed = 0, not = NaN, ID = "none set");
+# randomize (min = 0 , max = 1 , fixed = 0 , not = NaN , ID = "none set");
 ## Randomization Script
 
 This is my randomization JavaScript. It will pick a random number between NOT and MAX, you may optionally specify a number to NOT select. It also prevents infinite loops, returns an .asset error to the console if an infinite loop has been prevented or if the input is wrong. 
