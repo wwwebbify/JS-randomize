@@ -17,7 +17,6 @@ This is my randomization JavaScript:
 * Returns a random number between NOT and MAX.
 * FIXED sets how many decimal places you want returned.
 * You may optionally specify a number to not select using NOT.
-* 
 
 Other Features:
 * Prevents infinite loops
