@@ -1,3 +1,8 @@
+/*
+* This randomize function was originally created by David Sutherland.
+* You may use or modify it freely as needed. Just notify me in some way, so I tract how useful it is (star it, watch it, fork it... whatever works for you!)
+*/
+
 //RANDOMIZE returns a random number between 'min' - 'max', but will not return 'not'.
 function randomize(min = 0, max = 1, fixed = 0, not = NaN, identifier = 'none set') {
     var loopBreak = 0;
