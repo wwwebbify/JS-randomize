@@ -23,7 +23,7 @@ function randomize(min = 0, max = 1, fixed = 0, not = NaN, identifier = 'none se
     //write error if randomNumber still === not
     console.assert(randomNumber !== not, 'Randomized number equals "not" - randomize function | min = ' + min + ' | max = ' + max + ' | not =' + not + ' | identifier = ' + identifier)
     if (randomNumber !== not) {
-        return randomNumber.toFixed(fixed);
+        return Number(randomNumber.toFixed(fixed));
     } else {
         //Return error if Infinite loop has been prevented
         console.log('Randomization Loop Ended on attempt # ' + loopBreak + ' | min = ' + min + ' | max = ' + max + ' | not =' + not);
