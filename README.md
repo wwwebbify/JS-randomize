@@ -1,4 +1,4 @@
-# randomize (min = 0 , max = 1 , fixed = 0 , not = NaN , ID = "none set");
+# randomize (min = 0 , max = 1 , not = NaN , ID = "none set");
 <hr/>
 ## Randomization Script - Parameters - min, max, not - [low,high], ID
 
