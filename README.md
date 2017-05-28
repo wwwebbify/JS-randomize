@@ -19,3 +19,10 @@ This is my randomization JavaScript:
 Other Features:
 * Prevents infinite loops
 * Returns an error to the console if an infinite loop has been prevented or if the input is incorrect. 
+
+
+###### Usage:
+
+randomize(0, 100, [25,75], 'Usage Example');
+
+returns - A whole number within the 0 < 25 ! 75 > 100 range
