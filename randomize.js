@@ -17,6 +17,7 @@
 function randomize(min = 0, max = 1, not = NaN, identifier = 'none set') {
     var loopBreak = 0;
     var loopStop = 100;
+    var randomNumber;
 
     //throw errors if input is no good
     console.assert(min <= max, 'Please place the greater value in the "max" perameter | min = ' + min + ' | max = ' + max + ' | not[low] = ' + not[0] + ' not[high] = ' + not[1] + ' | identifier = ' + identifier)
@@ -29,7 +30,7 @@ function randomize(min = 0, max = 1, not = NaN, identifier = 'none set') {
 
     //Pick a number
     do {
-        var randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+        randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
         loopBreak++;
     } while (
         loopBreak < loopStop &&
