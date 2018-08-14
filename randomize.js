@@ -4,7 +4,6 @@
 */
 
 /*
-
     @public
     @function randomize
     @description - Returns a random integer between 'min' - 'max', but will not return 'not'
@@ -12,36 +11,46 @@
     @param {number} [max] - The maximum number to return
     @param {number or [low, high]} [not] - The number or array of numbers [low, high] to NOT return (default - NaN)
     @param {string} - An optional Identifyer used for error tracking, useful to narrow down a problematic function call (default - 'none set')
-
+    @return {int}
 */
-function randomize(min = 0, max = 1, not = NaN, identifier = 'none set') {
-    var loopBreak = 0;
-    var loopStop = 100;
-    var randomNumber;
+function randomize(min = 0, max = 1, not = [null, null], identifier = 'none set') {
 
-    //throw errors if input is no good
-    console.assert(min <= max, 'Please place the greater value in the "max" perameter | min = ' + min + ' | max = ' + max + ' | not[low] = ' + not[0] + ' not[high] = ' + not[1] + ' | identifier = ' + identifier)
-    if (Array.isArray(not)) {
-        console.assert(typeof not[0] === 'number' || typeof not[1] === 'number', 'If 3rd Parameter is an array - "not[low, high]" - must both be a number | min = ' + min + ' | max = ' + max + ' | not =' + not + ' | identifier = ' + identifier)
-    } else {
-        console.assert(typeof not === 'number', '3rd Parameter - "not" - must be a number | min = ' + min + ' | max = ' + max + ' | not =' + not + ' | identifier = ' + identifier)
-    }//END IF
-    console.assert(typeof identifier === 'string', '4th Parameter - "identifier" -  must be a string | min = ' + min + ' | max = ' + max + ' | not =' + not + ' | identifier = ' + identifier)
+not = typeof not === 'number' ? [not, not] : not;
+
+var loopBreak = 0;
+var loopStop = (not[1]-not[0])*10;
+var randomNumber;
+var error = false;
+
+//throw errors if input is no good
+    
+if(min > max){error = '"min" should not be greater than "max"';}
+if (Array.isArray(not)) {
+ if(typeof not[0] !== 'number' || typeof not[1] !== 'number'){
+  error = 'If 3rd Parameter is an array - "not[low, high]" - both must be a number';}
+ } else {
+  if(typeof not !== 'number'){error = '3rd Parameter - "not" - must be a number';}
+ }//END IF
+if(typeof identifier !== 'string'){
+ error = '4th Parameter - "identifier" -  must be a string';}
+if(error !== false){
+ error += '\n ---- \n"min" = ' + min + '\n"max" = ' + max + '\n"not" = [(low)' + not[0] + ',  (high)' + not[1] + ']\n"identifier" = ' + identifier + '\n';
+
+ throw error;
+}
 
     //Pick a number
-    do {
-        randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
-        loopBreak++;
-    } while (
-        loopBreak < loopStop &&
-        (Array.isArray(not) ? randomNumber >= not[0] && randomNumber <= not[1] : randomNumber === not)
-    )//END DO
+do {
+ randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+ loopBreak++;
+} while (loopBreak < loopStop && (randomNumber >= not[0] && randomNumber <= not[1]))//END DO
 
     //Return error if Infinite loop has been prevented
-    if (loopBreak === loopStop) {
-        console.warn('Min returned - Randomize used at ' + identifier + ' | attempt # ' + loopBreak + ' | min = ' + min + ' | max = ' + max + ' | not =' + not);
-        return min
-    }//END IF
+ if (loopBreak >= loopStop) {
+  console.warn('Min returned from randomize \nidentifier = \'' + identifier + '\'\nattempt # ' + loopBreak + '\nmin = ' + min + '\nmax = ' + max + '\nnot =' + not);
 
-    return randomNumber;
+  return min;
+ }//END IF
+
+ return randomNumber;
 }
